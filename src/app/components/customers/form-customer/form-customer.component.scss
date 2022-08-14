@@ -1,0 +1,38 @@
+.example-container {
+  width: 100%;
+}
+
+.mda-form-msg {
+  color: red;
+}
+
+.container{
+  font-size: 1rem;
+}
+
+.btn-cancelar {
+  cursor: pointer;
+  padding: 5px 15px;
+  background-color: #6C757D;
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+}
+
+.btn-aceptar {
+  cursor: pointer;
+  padding: 5px 15px;
+  background-color: steelblue;
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+}
+
+.btn-aceptar-no-drop {
+  cursor: no-drop;
+  padding: 5px 15px;
+  background-color: steelblue;
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+}

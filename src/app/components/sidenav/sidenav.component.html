@@ -1,0 +1,18 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [opened]="opened">
+    <mat-list>
+      <mat-list-item>
+          <a class="navbar-item-link" routerLink="#">Home</a>
+      </mat-list-item>
+      <mat-list-item>
+          <a class="navbar-item-link" routerLink="/directives">Directives</a>
+      </mat-list-item>
+      <mat-list-item>
+          <a class="navbar-item-link" routerLink="/customers" routerLinkActive="active">Customers</a>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-body-sidenav></app-body-sidenav>
+  </mat-sidenav-content>
+</mat-sidenav-container>

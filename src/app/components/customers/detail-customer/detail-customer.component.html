@@ -1,0 +1,106 @@
+<div *ngIf="modalService.modal" class="modal" tabindex="-1" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Detalles de cliente</h1>
+        <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #f4f7fa;">
+        <div class="container" style="display: flex; justify-content: center; align-items: center;">
+          <mat-card class="example-card">
+            <mat-card-header *ngIf="customer">
+              <img mat-card-avatar *ngIf="customer.photo" src="{{urlUploads}}{{customer.photo}}">
+              <img mat-card-avatar *ngIf="!customer.photo" src="{{photoDefault}}">
+              <mat-card-title>{{ customer.firstname }}</mat-card-title>
+              <mat-card-subtitle>{{ customer.lastname }}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image *ngIf="customer.photo" src="{{urlUploads}}{{customer.photo}}" style="height: 320px; width: 400;">
+            <img mat-card-image *ngIf="!customer.photo" src="{{photoDefault}}" style="height: 320px; width: 400;">
+            <mat-card-content>
+              <p><strong>Correo: </strong>{{ customer.email }}</p>
+              <p><strong>Fecha de nacimiento: </strong>{{ customer.dateOfBirth | date: 'fullDate' }}</p>
+              <label for="formFile" class="form-label">Imagen de perfil</label>
+              <input (change)="seleccionarFoto($event)" class="form-control" name="file" type="file" id="file" #file>
+              <mat-progress-bar class="my-2" *ngIf="progreso > 0" mode="indeterminate" [value]="progreso"></mat-progress-bar>
+              <div class="my-2" style="text-align: left;">
+                <button mat-raised-button
+                  [routerLink]="['/customers/addCustomer']"
+                  style="background-color: steelblue; color: #fff"
+                  (click)="subirFoto()"
+                >Subir imagen
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+  <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ titulo }}</h5>
+          <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+
+              <div class="col-sm">
+                <ul *ngIf="cliente" class="list-group text-dark mb-3">
+                  <li class="list-group-item active">{{cliente.nombre}}</li>
+                  <li class="list-group-item">{{cliente.apellido}}</li>
+                  <li class="list-group-item">{{cliente.email}}</li>
+                  <li class="list-group-item">{{cliente.createAt | date:"fullDate"}}</li>
+                </ul>
+
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                    <label class="custom-file-label" for="inputGroupFile04">Seleccionar foto</label>
+                  </div>
+                  <div class="input-group-append">
+                    <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
+                  </div>
+                </div>
+
+                <div *ngIf="progreso > 0" class="progress" style="height: 40px;">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width:progreso+'%'}" attr.aria-valuenow="{{progreso}}" aria-valuemin="0" aria-valuemax="100">
+                    {{progreso}}%
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col-sm">
+                <img *ngIf="cliente?.foto" src="http://localhost:8090/api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}" class="img-thumbnail rounded">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div> -->

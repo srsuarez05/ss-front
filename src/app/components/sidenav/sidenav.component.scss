@@ -1,0 +1,19 @@
+mat-sidenav-container {
+  height: calc(100vh - 64px);
+
+  mat-sidenav {
+    width: 200px;
+  }
+}
+
+.navbar-item-link {
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar-item-link.active {
+   color: blue;
+}
+
+
