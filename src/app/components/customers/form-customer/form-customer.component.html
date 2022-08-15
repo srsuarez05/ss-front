@@ -78,6 +78,24 @@
 
             </div>
 
+            <div class="col-lg-6 my-1" style="margin: 0 auto;">
+
+              <mat-form-field appearance="outline" class="example-container">
+                <mat-label>Región</mat-label>
+                <mat-select [compareWith]="compareRegion" name="region" formControlName="region">
+                  <mat-option> --- Seleccione una región --- </mat-option>
+                  <mat-option *ngFor="let region of regions" [value]="region">
+                    {{ region.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="customerForm.get('region')?.hasError('required') && customerForm.get('region')?.touched"
+                style="margin-top: -20px; text-align: center;">
+                <span class="mda-form-msg">Este campo es requerido</span>
+              </div>
+
+            </div>
+
             <div class="col-lg-6 my-3" style="margin: 0 auto; text-align: center;">
               <button mat-button class="btn-cancelar" style="margin-right: 20px;"
                 routerLink="/customers"

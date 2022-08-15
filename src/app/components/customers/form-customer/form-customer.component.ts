@@ -6,6 +6,8 @@ import { CustomersService } from '../../../services/customers.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ConfirmationMessageComponent } from '../../shared/confirmation-message/confirmation-message.component';
+import { RegionService } from '../../../services/region.service';
+import { Region } from '../../../models/region';
 
 @Component({
   selector: 'app-form-customer',
@@ -23,8 +25,10 @@ export class FormCustomerComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   customer: Customer = new Customer();
+  regions: Region[] = [];
 
   constructor(private customersService: CustomersService,
+    private regionService: RegionService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -33,17 +37,17 @@ export class FormCustomerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.customerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      dateOfBirth: ['', [Validators.required]]
+      dateOfBirth: ['', [Validators.required]],
+      region: ['', [Validators.required]]
     });
     const idParam = 'idCustomer';
     this.idCustomer = this.activatedRoute.snapshot.params[idParam];
     this.getCustomer();
-
+    this.regionService.getRegions().subscribe(response => this.regions = response);
   }
 
   getCustomer(): void {
@@ -55,7 +59,8 @@ export class FormCustomerComponent implements OnInit {
           firstName: this.customer.firstname,
           lastName: this.customer.lastname,
           email: this.customer.email,
-          dateOfBirth: this.customer.dateOfBirth
+          dateOfBirth: this.customer.dateOfBirth,
+          region: this.customer.region
         });
       });
     }
@@ -74,6 +79,7 @@ export class FormCustomerComponent implements OnInit {
     this.customer.lastname = this.customerForm.get('lastName')?.value;
     this.customer.email = this.customerForm.get('email')?.value;
     this.customer.dateOfBirth = this.customerForm.get('dateOfBirth')?.value;
+    this.customer.region = this.customerForm.get('region')?.value;
 
     this.customersService.createCustomer(this.customer)
     .subscribe(
@@ -108,6 +114,7 @@ export class FormCustomerComponent implements OnInit {
     this.customer.lastname = this.customerForm.get('lastName')?.value;
     this.customer.email = this.customerForm.get('email')?.value;
     this.customer.dateOfBirth = this.customerForm.get('dateOfBirth')?.value;
+    this.customer.region = this.customerForm.get('region')?.value;
 
     const dialogRef = this.dialog.open(ConfirmationMessageComponent, {
       width: '350px',
@@ -143,6 +150,10 @@ export class FormCustomerComponent implements OnInit {
         });
       }
     });
+  }
+
+  compareRegion(obj1: Region, obj2: Region){
+    return obj1 === null || obj2 === null ? false : obj1.id === obj2.id;
   }
 
 }

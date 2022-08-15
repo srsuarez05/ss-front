@@ -12,6 +12,7 @@
       <mat-card-content>
         <p><strong>Correo: </strong>{{ customer.email }}</p>
         <p><strong>Fecha de nacimiento: </strong>{{ customer.dateOfBirth | date: 'fullDate' }}</p>
+        <p><strong>Región: </strong>{{ customer.region.name }}</p>
         <button mat-raised-button style="width: 0px; height: 0px;"></button>
         <div *ngIf="!visibleSubirFoto" style="text-align: left;">
           <button mat-raised-button

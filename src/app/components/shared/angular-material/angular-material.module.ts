@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -41,6 +42,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDatepickerModule,
     MatMomentDateModule,
     MatProgressBarModule,
+    MatSelectModule,
   ],
   exports: [
     MatToolbarModule,
@@ -60,6 +62,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDatepickerModule,
     MatMomentDateModule,
     MatProgressBarModule,
+    MatSelectModule,
   ]
 })
 export class AngularMaterialModule { }

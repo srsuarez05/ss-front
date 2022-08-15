@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Customer } from '../models/customer';
 import { CustomersPage } from '../models/customersPage';
 import { Router } from '@angular/router';
